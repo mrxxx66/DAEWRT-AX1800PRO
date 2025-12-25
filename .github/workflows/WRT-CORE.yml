@@ -110,7 +110,7 @@ jobs:
 
       - name: Initialization Values
         run: |
-          echo "WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+          echo "WRT_DATE=$(TZ=UTC-8 date +'%y.%m.%d-%H.%M.%S')" >> $GITHUB_ENV
           echo "WRT_MARK=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)" >> $GITHUB_ENV
           echo "WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 4)-$WRT_BRANCH" >> $GITHUB_ENV
           echo "WRT_TARGET=$(grep -m 1 -oP '^CONFIG_TARGET_\K[\w]+(?=\=y)' ./Config/$WRT_CONFIG.txt | tr '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
@@ -247,7 +247,7 @@ jobs:
           body: |
             京东云亚瑟AX1800pro专属固件包
             代码来自Davidtall、VIKINGYFY
-            适度精简，确保最大性能发挥，开启内核eBPF，Dae吃鹅优选，建议硬改1GB内存的使用
+            适度精简，确保最大性能发挥。
             刷机前请更换分区表和uboot,参考链接: https://www.right.com.cn/forum/thread-8402269-1-1.html            
             全系带开源硬件加速。
 

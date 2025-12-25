@@ -50,13 +50,13 @@ jobs:
       #默认主题
       WRT_THEME: argon
       #默认主机名
-      WRT_NAME: NERCH_Plus
+      WRT_NAME: Clsddy
       #默认WIFI名称
-      WRT_SSID: NERCH_Plus
+      WRT_SSID: 123
       #默认WIFI密码
-      WRT_WORD: 8765432101
+      WRT_WORD: '09161209'
       #默认地址
-      WRT_IP: 10.0.0.1
+      WRT_IP: 192.168.10.1
       #默认密码，仅作提示，修改无用
       WRT_PW: 无
       #源码链接
