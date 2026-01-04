@@ -130,10 +130,48 @@ CONFIG_KERNEL_SKB_RECYCLER_MULTI_CPU=y
 EOF
 }
 
+# 512M内存优化配置
+function cat_512m_optimization() {
+  cat >> $1 <<EOF
+# 512M内存优化配置
+CONFIG_IPQ_MEM_PROFILE_512=y
+CONFIG_ATH11K_MEM_PROFILE_512M=y
+CONFIG_PACKAGE_zram-swap=y
+CONFIG_PACKAGE_luci-app-ramfree=y
+
+# 禁用调试信息节省内存
+# CONFIG_KERNEL_DEBUG_INFO is not set
+# CONFIG_KERNEL_DEBUG_INFO_REDUCED is not set
+# CONFIG_KERNEL_DEBUG_INFO_BTF is not set
+
+# 禁用eBPF节省内存
+# CONFIG_BPF is not set
+# CONFIG_BPF_SYSCALL is not set
+# CONFIG_BPF_JIT is not set
+# CONFIG_BPF_EVENTS is not set
+# CONFIG_KERNEL_BPF_EVENTS is not set
+# CONFIG_KERNEL_CGROUP_BPF is not set
+EOF
+}
+
 function generate_config() {
   config_file=".config"
-  #如配置文件已存在
-  cat $GITHUB_WORKSPACE/Config/${WRT_CONFIG}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  > $config_file
+  
+  # 根据配置类型选择GENERAL文件
+  if [[ "$WRT_CONFIG" == *"512M"* ]] || [[ "$WRT_CONFIG" == *"512m"* ]]; then
+    # 使用512M优化配置
+    if [ -f "$GITHUB_WORKSPACE/Config/GENERAL-512M-BALANCED.txt" ]; then
+      cat $GITHUB_WORKSPACE/Config/${WRT_CONFIG}.txt $GITHUB_WORKSPACE/Config/GENERAL-512M-BALANCED.txt > $config_file
+      echo "使用512M平衡优化配置"
+    else
+      cat $GITHUB_WORKSPACE/Config/${WRT_CONFIG}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt > $config_file
+      echo "警告: GENERAL-512M-BALANCED.txt 不存在，使用默认GENERAL.txt"
+    fi
+  else
+    # 使用默认配置
+    cat $GITHUB_WORKSPACE/Config/${WRT_CONFIG}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt > $config_file
+  fi
+  
   local target=$(echo $WRT_ARCH | cut -d'_' -f2)
 
   #删除wifi依赖
@@ -147,11 +185,21 @@ function generate_config() {
   fi
 
   set_nss_driver $config_file
-  #增加ebpf
-  cat_ebpf_config $config_file
+  
+  # 根据配置决定是否启用eBPF
+  if [[ "$WRT_CONFIG" == *"512M"* ]] || [[ "$WRT_CONFIG" == *"512m"* ]]; then
+    # 512M配置禁用eBPF
+    echo "# eBPF已禁用以节省内存" >> $config_file
+    cat_512m_optimization $config_file
+  else
+    # 默认配置启用eBPF
+    cat_ebpf_config $config_file
+  fi
+  
   enable_skb_recycler $config_file
   set_kernel_size
-  #增加内核选项
+  
+  # 增加内核选项
   cat_kernel_config "target/linux/qualcommax/${target}/config-default"
 }
 

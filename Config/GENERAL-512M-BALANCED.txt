@@ -1,0 +1,175 @@
+# DAEWRT-AX1800PRO 512M内存平衡优化配置 (方案B)
+# 目标：在内存节省和功能保留之间取得最佳平衡
+# 预计内存节省：~150MB
+
+# ========== 基本LuCI配置 ==========
+CONFIG_PACKAGE_luci=y
+CONFIG_LUCI_LANG_zh_Hans=y
+CONFIG_PACKAGE_luci-base=y
+CONFIG_PACKAGE_luci-compat=y
+CONFIG_PACKAGE_luci-lib-base=y
+CONFIG_PACKAGE_luci-lib-ipkg=y
+CONFIG_PACKAGE_luci-lua-runtime=y
+
+# ========== 主题配置 ==========
+# 使用bootstrap主题 (轻量)
+CONFIG_PACKAGE_luci-theme-bootstrap=y
+# 可选argon主题 (按需启用)
+# CONFIG_PACKAGE_luci-theme-argon=y
+# CONFIG_PACKAGE_luci-app-argon-config=y
+
+# ========== 实用工具插件 ==========
+# 内存优化工具
+CONFIG_PACKAGE_luci-app-ramfree=y
+
+# 系统工具
+CONFIG_PACKAGE_luci-app-autoreboot=y
+CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-pushbot=y
+
+# 文件管理 (轻量版)
+CONFIG_PACKAGE_luci-app-filemanager=y
+
+# ========== 网络服务 ==========
+# 基本网络服务
+CONFIG_PACKAGE_dropbear=y
+CONFIG_PACKAGE_openssh-sftp-server=y
+
+# USB支持 (基本)
+CONFIG_PACKAGE_usbmuxd=y
+
+# 打印服务 (轻量)
+CONFIG_PACKAGE_p910nd=y
+CONFIG_PACKAGE_luci-app-usbprinter=y
+
+# ========== 内核模块优化 ==========
+# 基本内核模块
+CONFIG_PACKAGE_kmod-dsa=y
+CONFIG_PACKAGE_kmod-fuse=y
+CONFIG_PACKAGE_kmod-tun=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+
+# 网络内核模块
+CONFIG_PACKAGE_kmod-nft-core=y
+CONFIG_PACKAGE_kmod-nft-nat=y
+CONFIG_PACKAGE_kmod-tcp-bbr=y
+CONFIG_DEFAULT_tcp_cubic=y
+
+# 文件系统 (仅ext4)
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_e2fsprogs=y
+
+# ========== 系统工具 ==========
+# 基本工具
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_default-settings=y
+CONFIG_PACKAGE_default-settings-chn=y
+CONFIG_PACKAGE_ip-full=y
+CONFIG_PACKAGE_iperf3=y
+
+# 诊断工具
+CONFIG_PACKAGE_tcpdump=y
+CONFIG_PACKAGE_bind-dig=y
+CONFIG_PACKAGE_bind-nslookup=y
+
+# ========== 内存优化配置 ==========
+# zram交换压缩
+CONFIG_PACKAGE_zram-swap=y
+
+# 禁用调试信息节省内存
+# CONFIG_KERNEL_DEBUG_INFO is not set
+# CONFIG_KERNEL_DEBUG_INFO_REDUCED is not set
+# CONFIG_KERNEL_DEBUG_INFO_BTF is not set
+
+# ========== 编译优化 ==========
+CONFIG_CCACHE=y
+CONFIG_DEVEL=y
+CONFIG_TARGET_MULTI_PROFILE=y
+CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+CONFIG_TARGET_ROOTFS_INITRAMFS=n
+
+# ========== 禁用内存消耗大的功能 ==========
+# 科学上网插件 (内存消耗大)
+# CONFIG_PACKAGE_luci-app-daed is not set
+# CONFIG_PACKAGE_luci-app-dae is not set
+# CONFIG_PACKAGE_dae-geosite is not set
+# CONFIG_PACKAGE_dae-geoip is not set
+
+# Samba文件共享 (使用轻量替代)
+# CONFIG_PACKAGE_luci-app-samba4 is not set
+
+# 高级监控工具
+# CONFIG_PACKAGE_btop is not set
+# CONFIG_PACKAGE_htop is not set
+
+# 非必要USB功能
+# CONFIG_PACKAGE_kmod-usb-audio is not set
+# CONFIG_PACKAGE_kmod-usb-net is not set
+# CONFIG_PACKAGE_kmod-usb-net-cdc-eem is not set
+# CONFIG_PACKAGE_kmod-usb-net-cdc-ether is not set
+# CONFIG_PACKAGE_kmod-usb-net-cdc-mbim is not set
+# CONFIG_PACKAGE_kmod-usb-net-cdc-ncm is not set
+# CONFIG_PACKAGE_kmod-usb-net-cdc-subset is not set
+# CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm is not set
+# CONFIG_PACKAGE_kmod-usb-net-ipheth is not set
+# CONFIG_PACKAGE_kmod-usb-net-qmi-wwan is not set
+# CONFIG_PACKAGE_kmod-usb-net-rndis is not set
+# CONFIG_PACKAGE_kmod-usb-net-rtl8150 is not set
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
+# CONFIG_PACKAGE_kmod-usb-ohci is not set
+# CONFIG_PACKAGE_kmod-usb-printer is not set
+# CONFIG_PACKAGE_kmod-usb-storage-extras is not set
+# CONFIG_PACKAGE_kmod-usb-storage-uas is not set
+# CONFIG_PACKAGE_kmod-usb-uhci is not set
+# CONFIG_PACKAGE_kmod-usb-xhci is not set
+
+# 非必要文件系统
+# CONFIG_PACKAGE_kmod-fs-btrfs is not set
+# CONFIG_PACKAGE_kmod-fs-f2fs is not set
+# CONFIG_PACKAGE_f2fsck is not set
+# CONFIG_PACKAGE_mkf2fs is not set
+
+# 非必要系统工具
+# CONFIG_PACKAGE_autocore is not set
+# CONFIG_PACKAGE_automount is not set
+# CONFIG_PACKAGE_blkid is not set
+# CONFIG_PACKAGE_cfdisk is not set
+# CONFIG_PACKAGE_cgdisk is not set
+# CONFIG_PACKAGE_coremark is not set
+# CONFIG_PACKAGE_dmesg is not set
+# CONFIG_PACKAGE_fdisk is not set
+# CONFIG_PACKAGE_gdisk is not set
+# CONFIG_PACKAGE_lsblk is not set
+# CONFIG_PACKAGE_mmc-utils is not set
+# CONFIG_PACKAGE_nand-utils is not set
+# CONFIG_PACKAGE_sfdisk is not set
+# CONFIG_PACKAGE_sgdisk is not set
+# CONFIG_PACKAGE_usbutils is not set
+
+# 非必要网络模块
+# CONFIG_PACKAGE_kmod-nft-bridge is not set
+# CONFIG_PACKAGE_kmod-nft-fib is not set
+# CONFIG_PACKAGE_kmod-nft-fullcone is not set
+# CONFIG_PACKAGE_kmod-nft-netdev is not set
+# CONFIG_PACKAGE_kmod-nft-offload is not set
+# CONFIG_PACKAGE_kmod-nft-queue is not set
+# CONFIG_PACKAGE_kmod-nft-socket is not set
+# CONFIG_PACKAGE_kmod-nft-tproxy is not set
+
+# ========== 可选功能 (按需启用) ==========
+# 如果需要easytier，取消注释
+# CONFIG_PACKAGE_luci-app-easytier=y
+# CONFIG_PACKAGE_easytier=y
+
+# 如果需要tailscale，取消注释
+# CONFIG_PACKAGE_luci-app-tailscale=y
+
+# 注释：此配置为512M内存平衡优化方案
+# 在内存节省和功能保留之间取得平衡
+# 预计空闲内存：150-200MB
+# 适合日常使用，轻度插件需求
