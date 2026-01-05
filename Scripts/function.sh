@@ -16,7 +16,7 @@ CONFIG_NET_CLS_ACT=y
 CONFIG_BPF_STREAM_PARSER=y
 CONFIG_DEBUG_INFO=y
 # CONFIG_DEBUG_INFO_REDUCED is not set
-CONFIG_DEBUG_INFO_BTF=y
+# CONFIG_DEBUG_INFO_BTF is not set
 CONFIG_KPROBE_EVENTS=y
 CONFIG_BPF_EVENTS=y
 
@@ -41,7 +41,7 @@ function cat_ebpf_config() {
 CONFIG_DEVEL=y
 CONFIG_KERNEL_DEBUG_INFO=y
 CONFIG_KERNEL_DEBUG_INFO_REDUCED=n
-CONFIG_KERNEL_DEBUG_INFO_BTF=y
+# CONFIG_KERNEL_DEBUG_INFO_BTF is not set
 CONFIG_KERNEL_CGROUPS=y
 CONFIG_KERNEL_CGROUP_BPF=y
 CONFIG_KERNEL_BPF_EVENTS=y
@@ -66,7 +66,7 @@ CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 EOF
-#6.12内核不包含以下驱动
+#6.12内核不包含以下驱�?
 if echo "$CI_NAME" | grep -v "6.12" > /dev/null; then
   cat >> $1 <<EOF
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
@@ -122,7 +122,7 @@ function set_kernel_size() {
   sed -i "/^define Device\/redmi_ax5-jdcloud/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
   sed -i "/^define Device\/linksys_mr/,/^endef/ { /KERNEL_SIZE := 8192k/s//KERNEL_SIZE := 12288k/ }" $image_file
 }
-#开启内存回收补丁
+#开启内存回收补�?
 function enable_skb_recycler() {
   cat >> $1 <<EOF
 CONFIG_KERNEL_SKB_RECYCLER=y

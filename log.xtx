@@ -1,6 +1,0 @@
-Thu Dec 25 17:23:00 2025 kern.info kernel: [  831.600934] usb 1-1: USB disconnect, device number 3
-Thu Dec 25 17:23:00 2025 kern.info kernel: [  831.601310] usblp0: removed
-Thu Dec 25 17:23:06 2025 kern.info kernel: [  837.209339] usb 1-1: new full-speed USB device number 4 using xhci-hcd
-Thu Dec 25 17:23:06 2025 kern.info kernel: [  837.719927] usblp 1-1:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x04B8 pid 0x007B
-Thu Dec 25 17:23:07 2025 daemon.info p910nd hotplug: No driver file: /opt/p910nd_drivers/EPSON_L310_Series_04b8_007b.bin for /dev/usb/lp0 [ 04b8/007b ] (upload it if your printer needs a driver loading).
-Thu Dec 25 17:23:07 2025 daemon.info p910nd hotplug: (Re)starting p910nd

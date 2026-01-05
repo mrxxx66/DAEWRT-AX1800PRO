@@ -1,5 +1,18 @@
 #!/bin/bash
 . $(dirname "$(realpath "$0")")/function.sh
+
+# 转义 sed 替换字符串中的特殊字符
+escape_sed_replacement() {
+    local str="$1"
+    local delimiter="${2:-|}"
+    # 转义反斜杠
+    str="${str//\\/\\\\}"
+    # 转义 &（在替换中表示匹配的整个文本）
+    str="${str//&/\\&}"
+    # 转义分隔符
+    str="${str//${delimiter}/\\${delimiter}}"
+    echo "$str"
+}
 #修改默认主题
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
@@ -11,18 +24,22 @@ WIFI_SH=$(find ./target/linux/{mediatek/filogic,qualcommax}/base-files/etc/uci-d
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
 if [ -f "$WIFI_SH" ]; then
 	#修改WIFI名称
-	sed -i "s/BASE_SSID='.*'/BASE_SSID='$WRT_SSID'/g" $WIFI_SH
+	escaped_ssid=$(escape_sed_replacement "$WRT_SSID")
+	sed -i "s|BASE_SSID='.*'|BASE_SSID='$escaped_ssid'|g" $WIFI_SH
 	#修改WIFI密码
-	sed -i "s/BASE_WORD='.*'/BASE_WORD='$WRT_WORD'/g" $WIFI_SH
+	escaped_word=$(escape_sed_replacement "$WRT_WORD")
+	sed -i "s|BASE_WORD='.*'|BASE_WORD='$escaped_word'|g" $WIFI_SH
 elif [ -f "$WIFI_UC" ]; then
 	#修改WIFI名称
-	sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC
+	escaped_ssid=$(escape_sed_replacement "$WRT_SSID")
+	sed -i "s|ssid='.*'|ssid='$escaped_ssid'|g" $WIFI_UC
 	#修改WIFI密码
-	sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC
+	escaped_word=$(escape_sed_replacement "$WRT_WORD")
+	sed -i "s|key='.*'|key='$escaped_word'|g" $WIFI_UC
 	#修改WIFI地区
-	sed -i "s/country='.*'/country='AU'/g" $WIFI_UC
+	sed -i "s|country='.*'|country='AU'|g" $WIFI_UC
 	#修改WIFI加密
-	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
+	sed -i "s|encryption='.*'|encryption='psk2+ccmp'|g" $WIFI_UC
 fi
 
 CFG_FILE="./package/base-files/files/bin/config_generate"

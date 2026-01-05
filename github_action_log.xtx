@@ -1,0 +1,78 @@
+ make[3] -C target/linux compile
+    ERROR: target/linux failed to build.
+make -r world: build failed. Please re-run make with -j1 V=s or V=sc for a higher verbosity level to see what's going on
+make: *** [/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/include/toplevel.mk:233: world] Error 1
+WARNING: Makefile 'package/feeds/packages/onionshare-cli/Makefile' has a dependency on 'python3-pysocks', which does not exist
+WARNING: Makefile 'package/feeds/packages/onionshare-cli/Makefile' has a dependency on 'python3-unidecode', which does not exist
+make[2]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/scripts/config'
+make[2]: 'conf' is up to date.
+make[2]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/scripts/config'
+make[1]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt'
+make[2]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt'
++ mkdir -p /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/target-aarch64_cortex-a53_musl
++ cd /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/target-aarch64_cortex-a53_musl
++ mkdir -p bin lib stamp usr/include usr/lib
+mkdir -p /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/stamp
+touch /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/target-aarch64_cortex-a53_musl/.prepared
+make[3]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux'
+make[4]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux/qualcommax'
+rm -f /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/localversion
+/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/scripts/kconfig.pl  + + /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux/generic/config-6.12 /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux/qualcommax/config-6.12 /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux/qualcommax/ipq60xx/config-default > /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target
+awk '/^(#[[:space:]]+)?CONFIG_KERNEL/{sub("CONFIG_KERNEL_","CONFIG_");print}' /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/.config >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target
+echo "# CONFIG_KALLSYMS_EXTRA_PASS is not set" >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target
+echo "# CONFIG_KALLSYMS_ALL is not set" >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target
+echo "CONFIG_KALLSYMS_UNCOMPRESSED=y" >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target
+/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/scripts/package-metadata.pl kconfig /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/tmp/.packageinfo /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/.config 6.12 > /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.override
+/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/scripts/kconfig.pl 'm+' '+' /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.target /dev/null /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.override > /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set
+mv /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.old
+grep -v INITRAMFS /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.old > /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set
+echo 'CONFIG_INITRAMFS_SOURCE=""' >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set
+echo '# CONFIG_INITRAMFS_FORCE is not set' >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set
+echo "# CONFIG_INITRAMFS_PRESERVE_MTIME is not set" >> /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set
+rm -rf /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/modules
+cmp -s /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.prev || { cp /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config; cp /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.prev; }
+export MAKEFLAGS= ; [ -d /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/user_headers ] || make -C /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63 KCFLAGS="-fmacro-prefix-map=/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl=target-aarch64_cortex-a53_musl -fno-caller-saves " HOSTCFLAGS="-O2 -I/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/host/include -Wall -Wmissing-prototypes -Wstrict-prototypes" CROSS_COMPILE="aarch64-openwrt-linux-musl-" ARCH="arm64" KBUILD_HAVE_NLS=no KBUILD_BUILD_USER="" KBUILD_BUILD_HOST="" KBUILD_BUILD_TIMESTAMP="Sun Jan  4 15:48:17 2026" KBUILD_BUILD_VERSION="0" KBUILD_HOSTLDFLAGS="-L/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/host/lib" CONFIG_SHELL="bash" V=''  cmd_syscalls=  CC="ccache aarch64-openwrt-linux-musl-gcc" KERNELRELEASE=6.12.63  INSTALL_HDR_PATH=/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/user_headers headers_install
+grep '=[ym]' /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.config.set | LC_ALL=C sort | /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/host/bin/mkhash md5 > /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.vermagic
+touch /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.configured
+rm -f /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/vmlinux /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/System.map
+make -C /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63 KCFLAGS="-fmacro-prefix-map=/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl=target-aarch64_cortex-a53_musl -fno-caller-saves " HOSTCFLAGS="-O2 -I/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/host/include -Wall -Wmissing-prototypes -Wstrict-prototypes" CROSS_COMPILE="aarch64-openwrt-linux-musl-" ARCH="arm64" KBUILD_HAVE_NLS=no KBUILD_BUILD_USER="" KBUILD_BUILD_HOST="" KBUILD_BUILD_TIMESTAMP="Sun Jan  4 15:48:17 2026" KBUILD_BUILD_VERSION="0" KBUILD_HOSTLDFLAGS="-L/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/host/lib" CONFIG_SHELL="bash" V=''  cmd_syscalls=  CC="ccache aarch64-openwrt-linux-musl-gcc" KERNELRELEASE=6.12.63 Image modules
+make[5]: Entering directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63'
+  SYNC    include/config/auto.conf.cmd
+*
+* Restart config...
+*
+*
+* Compile-time checks and compiler options
+*
+Debug information
+  1. Disable debug information (DEBUG_INFO_NONE)
+> 2. Rely on the toolchain's implicit default DWARF version (DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT)
+  3. Generate DWARF Version 4 debuginfo (DEBUG_INFO_DWARF4)
+  4. Generate DWARF Version 5 debuginfo (DEBUG_INFO_DWARF5)
+choice[1-4?]: 2
+Reduce debugging information (DEBUG_INFO_REDUCED) [N/y/?] n
+Compressed Debug information
+> 1. Don't compress debug information (DEBUG_INFO_COMPRESSED_NONE)
+  2. Compress debugging information with zlib (DEBUG_INFO_COMPRESSED_ZLIB)
+  3. Compress debugging information with zstd (DEBUG_INFO_COMPRESSED_ZSTD)
+choice[1-3?]: 1
+Produce split debuginfo in .dwo files (DEBUG_INFO_SPLIT) [N/y/?] n
+Generate BTF type information (DEBUG_INFO_BTF) [Y/n/?] y
+make[8]: *** [scripts/kconfig/Makefile:85: syncconfig] Error 1
+make[7]: *** [Makefile:686: syncconfig] Error 2
+/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/Makefile:764: include/config/auto.conf.cmd: No such file or directory
+make[6]: *** [/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/Makefile:787: include/config/auto.conf.cmd] Error 2
+make[5]: *** [Makefile:224: __sub-make] Error 2
+make[4]: *** [Makefile:39: /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63/.modules] Error 2
+make[3]: *** [Makefile:12: compile] Error 2
+Generate BTF type information for kernel modules (DEBUG_INFO_BTF_MODULES) [Y/n/?] (NEW) make[5]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/build_dir/target-aarch64_cortex-a53_musl/linux-qualcommax_ipq60xx/linux-6.12.63'
+make[4]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux/qualcommax'
+make[3]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/target/linux'
+time: target/linux/compile#1.44#0.82#2.22
+    ERROR: target/linux failed to build.
+make[2]: *** [target/Makefile:32: target/linux/compile] Error 1
+make[2]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt'
+make[1]: *** [target/Makefile:25: /home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/staging_dir/target-aarch64_cortex-a53_musl/stamp/.target_compile] Error 2
+make[1]: Leaving directory '/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt'
+make: *** [/home/runner/work/DAEWRT-AX1800PRO/DAEWRT-AX1800PRO/wrt/include/toplevel.mk:233: world] Error 2
+Error: Process completed with exit code 2.
